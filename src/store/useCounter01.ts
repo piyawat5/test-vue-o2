@@ -14,12 +14,12 @@ export const useCounter01 = defineStore("counter01", () => {
     const doubleCount = computed(() => count.value.normal * 2)
 
     //actions
-    const increase = () => {
-        count.value.normal += 1;
+    const increase = (value: number = 1) => {
+        count.value.normal += value;
         count.value.superCount = count.value.normal * 2
     }
-    const decrease = () => {
-        count.value.normal -= 1;
+    const decrease = (value: number = 1) => {
+        count.value.normal -= value;
         count.value.superCount = count.value.normal * 2
     }
     return {

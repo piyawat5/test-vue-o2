@@ -1,7 +1,7 @@
 <template>
   <span>{{ counter.count.superCount }}:{{ counter.count.normal }}</span>
-  <button @click="counter.increase">INCREASE</button>
-  <button @click="counter.decrease">DECREASE</button>
+  <button @click="counter.increase(1)">INCREASE</button>
+  <button @click="counter.decrease(1)">DECREASE</button>
   <hr />
 
   <span>{{ counter02.count }}</span>
