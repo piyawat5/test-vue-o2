@@ -1,38 +1,43 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-</script>
-
 <template>
-  <h1>{{ msg }}</h1>
+  <span>{{ counter.count.superCount }}:{{ counter.count.normal }}</span>
+  <button @click="counter.increase">INCREASE</button>
+  <button @click="counter.decrease">DECREASE</button>
+  <hr />
 
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
-    <p>
-      Edit
-      <code>components/HelloWorld.vue</code> to test HMR
-    </p>
-  </div>
-
-  <p>
-    Check out
-    <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
-    >, the official Vue + Vite starter
-  </p>
-  <p>
-    Install
-    <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
-    in your IDE for a better DX
-  </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <span>{{ counter02.count }}</span>
+  <button @click="counter02.increment">INCREASE</button>
+  <button @click="counter02.decrement">DECREASE</button>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<script lang="ts">
+import { defineComponent } from "vue";
+import { useCounter01 } from "../store/useCounter01";
+import { useCounter02 } from "../store/useCounter02";
+
+export default defineComponent({
+  name: "HelloWorld",
+  data() {
+    const counter01 = useCounter01();
+    const counter02 = useCounter02();
+    return {
+      counter: counter01,
+      counter02: counter02,
+      data: "",
+    };
+  },
+  methods: {
+    something() {
+      console.log("foooo");
+    },
+    getApiData() {
+      this.data = "dataaaa";
+      console.log(this.data);
+    },
+  },
+  mounted() {
+    this.getApiData();
+  },
+});
+</script>
+
+<style></style>
