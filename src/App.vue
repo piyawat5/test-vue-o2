@@ -1,29 +1,12 @@
 <script setup lang="ts">
-import { onBeforeMount, ref } from "vue";
-import HelloWorld, { RoleEnum } from "./components/HelloWorld.vue";
-import HelloWorld02Vue from "./components/HelloWorld02.vue";
-import HelloWorld03Vue from "./components/HelloWorld03.vue";
-import HelloWorld04Vue from "./components/HelloWorld04.vue";
-const role = ref(RoleEnum.ADMIN);
-onBeforeMount(() => {
-  role.value = RoleEnum.USER;
-});
+// import HelloWorld02Vue from "./components/HelloWorld02.vue";
+// import HelloWorld03Vue from "./components/HelloWorld03.vue";
+// import HelloWorld04Vue from "./components/HelloWorld04.vue";
+import TransitionVue from "./components/Transition.vue";
 </script>
 
 <template>
-  <div class="container">
-    <HelloWorld03Vue></HelloWorld03Vue>
-    <HelloWorld04Vue></HelloWorld04Vue>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld :role="role" />
-  <hr />
-  <HelloWorld02Vue></HelloWorld02Vue>
+  <TransitionVue></TransitionVue>
 </template>
 
 <style>
