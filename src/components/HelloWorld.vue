@@ -33,7 +33,7 @@ export default defineComponent({
       default: RoleEnum.ADMIN,
     },
   },
-  setup() {
+  data() {
     const counter01 = useCounter01();
     const counter02 = useCounter02();
     return {
@@ -54,7 +54,7 @@ export default defineComponent({
       console.log(this.user);
     },
   },
-  mounted() {
+  created() {
     this.getApiData();
     console.log(this.role);
   },

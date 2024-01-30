@@ -1,11 +1,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import HelloWorld, { RoleEnum } from "./components/HelloWorld.vue";
+import HelloWorld02Vue from "./components/HelloWorld02.vue";
 
 export default defineComponent({
   name: "App",
   components: {
     HelloWorld,
+    HelloWorld02Vue,
   },
   setup() {
     return {
@@ -36,6 +38,8 @@ export default defineComponent({
     </a>
   </div>
   <HelloWorld :role="role" />
+  <hr />
+  <HelloWorld02Vue></HelloWorld02Vue>
 </template>
 
 <style scoped>
