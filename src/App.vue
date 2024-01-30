@@ -1,30 +1,10 @@
-<script lang="ts">
-import { defineComponent } from "vue";
+<script setup lang="ts">
+import { onBeforeMount, ref } from "vue";
 import HelloWorld, { RoleEnum } from "./components/HelloWorld.vue";
 import HelloWorld02Vue from "./components/HelloWorld02.vue";
-
-export default defineComponent({
-  name: "App",
-  components: {
-    HelloWorld,
-    HelloWorld02Vue,
-  },
-  setup() {
-    return {
-      role: RoleEnum.ADMIN,
-    };
-  },
-  methods: {
-    somethigs(next: () => void) {
-      this.role = RoleEnum.USER;
-      next();
-    },
-  },
-  beforeMount() {
-    this.somethigs(() => {
-      console.log(this.role);
-    });
-  },
+const role = ref(RoleEnum.ADMIN);
+onBeforeMount(() => {
+  role.value = RoleEnum.USER;
 });
 </script>
 
