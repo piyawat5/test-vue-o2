@@ -10,6 +10,12 @@ import { onMounted } from "vue";
 import useCounter from "./../hooks/useCounter";
 
 export default {
+  props: {
+    count: {
+      type: Number,
+      required: false,
+    },
+  },
   setup() {
     const { count, onClick } = useCounter.useCounterRef(0);
     const { countRT, onClickRT } = useCounter.useCounterReactive(0);
