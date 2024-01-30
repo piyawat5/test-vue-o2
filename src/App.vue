@@ -1,5 +1,29 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+<script lang="ts">
+import { defineComponent } from "vue";
+import HelloWorld, { RoleEnum } from "./components/HelloWorld.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    HelloWorld,
+  },
+  setup() {
+    return {
+      role: RoleEnum.ADMIN,
+    };
+  },
+  methods: {
+    somethigs(next: () => void) {
+      this.role = RoleEnum.USER;
+      next();
+    },
+  },
+  beforeMount() {
+    this.somethigs(() => {
+      console.log(this.role);
+    });
+  },
+});
 </script>
 
 <template>
@@ -11,7 +35,7 @@ import HelloWorld from "./components/HelloWorld.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld />
+  <HelloWorld :role="role" />
 </template>
 
 <style scoped>

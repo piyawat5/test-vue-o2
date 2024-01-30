@@ -10,19 +10,37 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 import { useCounter01 } from "../store/useCounter01";
 import { useCounter02 } from "../store/useCounter02";
 
+interface User {
+  name: string;
+  phone: string;
+}
+
+export enum RoleEnum {
+  ADMIN = "ADMIN",
+  USER = "USER",
+}
+
 export default defineComponent({
   name: "HelloWorld",
-  data() {
+  props: {
+    role: {
+      type: String as PropType<RoleEnum>,
+      required: true,
+      default: RoleEnum.ADMIN,
+    },
+  },
+  setup() {
     const counter01 = useCounter01();
     const counter02 = useCounter02();
     return {
       counter: counter01,
       counter02: counter02,
       data: "",
+      user: {} as User,
     };
   },
   methods: {
@@ -32,10 +50,13 @@ export default defineComponent({
     getApiData() {
       this.data = "dataaaa";
       console.log(this.data);
+      this.user = { ...this.user, name: "piyawat" };
+      console.log(this.user);
     },
   },
   mounted() {
     this.getApiData();
+    console.log(this.role);
   },
 });
 </script>
