@@ -12,38 +12,45 @@
   </transition> -->
 
   <!-- list transition -->
-  <input type="text" v-model="newTodo.text" placeholder="Add a new todo.." />
+  <input
+    @keypress.enter="addTodo"
+    type="text"
+    v-model="newTodo.text"
+    placeholder="Add a new todo.."
+  />
   <button @click="addTodo">ADD</button>
-  <div v-if="todos.length">
-    <transition-group tag="ul" name="list">
-      <li
-        v-for="item in todos"
-        @click="removeTodo(item.id)"
-        class="order"
-        :key="item.id"
-      >
-        {{ item.text }}
-      </li>
-    </transition-group>
-  </div>
-  <div v-else>Nothing left todo!!!</div>
+  <transition name="switch" mode="out-in" appear>
+    <div v-if="todos.length">
+      <transition-group tag="ul" name="list" appear>
+        <li
+          v-for="item in todos"
+          @click="removeTodo(item.id)"
+          class="order"
+          :key="item.id"
+        >
+          {{ item.text }}
+        </li>
+      </transition-group>
+    </div>
+    <div v-else>Nothing left todo!!!</div>
+  </transition>
 </template>
 
 <script lang="ts">
 import { ref } from "vue";
 
+interface User {
+  text: string;
+  id: number;
+}
 export default {
   setup() {
     const isShow = ref<boolean>(false);
 
     const newTodo = ref({ text: "", id: 0 });
-    const todos = ref([
-      { text: "yoo", id: 1 },
-      { text: "foo", id: 2 },
-    ]);
+    const todos = ref<User[]>([]);
 
     const addTodo = () => {
-      // newTodo.value.id = todos.value[todos.value.length - 1].id + 1;
       newTodo.value.id = Math.random() * 10;
       todos.value = [{ ...newTodo.value }, ...todos.value];
       newTodo.value = { text: "", id: 0 };
@@ -107,6 +114,8 @@ export default {
 } */
 
 .order {
+  width: 400px;
+  text-align: center;
   border-radius: 12px;
   border: 1px solid grey;
   background: grey;
@@ -124,8 +133,23 @@ export default {
   opacity: 1;
   transform: scale(1);
 }
-.list-enter-active,
+.list-enter-active {
+  transition: all 0.4s ease;
+}
 .list-leave-active {
+  transition: all 0.4s ease;
+  position: absolute;
+}
+.list-move {
+  transition: all 0.3s ease;
+}
+.switch-enter-from,
+.switch-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+.switch-enter-active,
+.switch-leave-active {
   transition: all 0.4s ease;
 }
 </style>

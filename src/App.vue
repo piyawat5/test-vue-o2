@@ -1,17 +1,27 @@
-<script setup lang="ts">
-// import HelloWorld02Vue from "./components/HelloWorld02.vue";
-// import HelloWorld03Vue from "./components/HelloWorld03.vue";
-// import HelloWorld04Vue from "./components/HelloWorld04.vue";
-import TransitionVue from "./components/Transition.vue";
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <TransitionVue></TransitionVue>
+  <div id="nav">
+    <router-link to="/">Home</router-link>
+    <router-link to="/aboutPage">About</router-link>
+    <router-link to="/stockPage">Contact</router-link>
+  </div>
+
+  <router-view v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <style>
-.container {
-  max-width: 300px !important;
+#nav a {
+  padding: 30px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 #app {
   padding: 48px;
@@ -20,16 +30,20 @@ import TransitionVue from "./components/Transition.vue";
   flex-direction: column;
   align-items: center;
 }
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+/* route transitions */
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.route-enter-active {
+  transition: all 0.3s ease-out;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.route-leave-active {
+  transition: all 0.3s ease-in;
 }
 </style>
