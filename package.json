@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.1",
-    "@vueuse/motion": "^2.0.0",
+    "@vueuse/core": "^10.7.2",
     "gsap": "^3.12.5",
     "pinia": "^2.1.7",
     "vue": "^3.3.11",

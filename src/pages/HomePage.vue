@@ -2,7 +2,12 @@
   <div>
     <div class="title">HomePage</div>
 
-    <transition-group appear @before-enter="beforEnter" @enter="enter">
+    <transition-group
+      appear
+      @before-enter="beforEnter"
+      @enter="enter"
+      class="animate-container"
+    >
       <div v-for="(item, i) in menus" :key="i" class="box" :data-index="i">
         {{ item }}
       </div>
